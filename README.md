@@ -13,4 +13,12 @@ I'm learning Rust🦀 in my free time (not much tbh!🥵). Let's see how far I c
 This code needs some *serious* refactoring! Not having much time do dedicate to this I'm focusing mainly on finding the right solutions and to learn as much as possible along the way! 👍 
 
 
+❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ 
+
+[Wednesday, December 6 2023]
+
+Ugh! I'm already lagging behind!😫 But I'm learning a ton!👍
+
+
+
 

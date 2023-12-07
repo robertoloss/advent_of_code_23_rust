@@ -19,6 +19,20 @@ fn generate_seeds(seeds_map_vec: &Vec<String>) -> Vec<String> {
     return seeds
 }
 
+fn generate_seeds_from_range(seeds: &Vec<String>) -> Vec<i64> {
+    let mut result : Vec<i64> = vec![];
+    for i in 0..seeds.len() {
+        if i % 2 == 0 {
+            for j in 0..seeds[i+1].parse::<i64>().unwrap() {
+                result.push(seeds[i].parse::<i64>().unwrap() + j);
+            }
+        } 
+    }
+
+    return result
+
+}
+
 fn generate_vec_of_maps(seeds_map_vec: &Vec<String>) -> Vec<Vec<String>> {
     let first_vec : Vec<String> = seeds_map_vec[1]
         .split('\n')
@@ -27,7 +41,6 @@ fn generate_vec_of_maps(seeds_map_vec: &Vec<String>) -> Vec<Vec<String>> {
     let mut result : Vec<Vec<String>> = vec![];
     let mut tmp : Vec<String> = vec![];
     for (index,string) in first_vec.iter().enumerate() {
-        //println!("String : {}", string);
         if string.len() > 0 {
             tmp.push(string.to_string());
         } 
@@ -41,10 +54,6 @@ fn generate_vec_of_maps(seeds_map_vec: &Vec<String>) -> Vec<Vec<String>> {
 
 fn map_number(num: i64, map: &Vec<String>) -> i64 {
     let mut result : i64 = num;
-    //println!("");
-    //println!("");
-    //println!("num : {:?}", num);
-    //println!("map : {:?}", map);
 
     for i in 1..map.len() {
         let vec_instr : Vec<i64> = map[i]
@@ -56,7 +65,6 @@ fn map_number(num: i64, map: &Vec<String>) -> i64 {
             break;
         }
     }
-    //println!("{}", result);
     return result
 }
 
@@ -269,24 +277,15 @@ humidity-to-location map:
 
     let vec_of_maps = generate_vec_of_maps(&seeds_map_vec);    
 
-    println!("vec_of_maps : {:?}", vec_of_maps);
+    //println!("vec_of_maps : {:?}", vec_of_maps);
     
-    //for (i,s) in vec_of_maps.iter().enumerate() {
-    //    for t in s.iter() {
-    //        println!("{}: {}", i, t);
-    //        println!("");
-    //    }
-    //    println!("--------------")
-    //}
 
-    //let res = map_number(79, &vec_of_maps[1]);
-
-    //println!("res {}", res);
-    //
-    //
+    let seeds_from_range = generate_seeds_from_range(&seeds);
+    //println!("seeds from range : {:?}", seeds_from_range);
+    
     let mut vec_res : Vec<i64> = vec![];
-    for s in seeds.iter() {
-        let mut num = s.parse::<i64>().unwrap();
+    for s in seeds_from_range.iter() {
+        let mut num = s.clone();
         for i in 1..vec_of_maps.len() {
            num = map_number(num, &vec_of_maps[i])
         }

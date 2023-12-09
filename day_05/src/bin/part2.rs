@@ -22,8 +22,11 @@ fn generate_seeds(seeds_map_vec: &Vec<String>) -> Vec<String> {
 fn generate_seeds_from_range(seeds: &Vec<String>) -> Vec<i64> {
     let mut result : Vec<i64> = vec![];
     for i in 0..seeds.len() {
+        println!("this");
         if i % 2 == 0 {
+            println!("N : {}", seeds[i+1].parse::<i64>().unwrap());
             for j in 0..seeds[i+1].parse::<i64>().unwrap() {
+                //println!("j : {}", j);
                 result.push(seeds[i].parse::<i64>().unwrap() + j);
             }
         } 
@@ -281,7 +284,7 @@ humidity-to-location map:
     
 
     let seeds_from_range = generate_seeds_from_range(&seeds);
-    //println!("seeds from range : {:?}", seeds_from_range);
+    println!("seeds from range : {:?}", seeds_from_range);
     
     let mut vec_res : Vec<i64> = vec![];
     for s in seeds_from_range.iter() {
